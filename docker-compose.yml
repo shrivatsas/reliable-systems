@@ -1,0 +1,18 @@
+# docker-compose.yml file
+version: '3.8'
+
+services:
+  # The load balancer
+  nginx:
+    image: nginx:1.16.0-alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "8080:80"
+
+  # The web server1
+  service:
+    build: ./app
+    scale: 5
+    # ports:
+    #   - 8000:8000
